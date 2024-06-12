@@ -11,18 +11,6 @@ vim.opt.termguicolors = true
 vim.opt.spelllang = "en"
 vim.opt.spelloptions = "camel"
 
--- Spellling
--- Make WinSeparator thicker
--- vim.opt.fillchars = {
---     horiz = "━",
---     horizup = "┻",
---     horizdown = "┳",
---     vert = "┃",
---     vertleft = "┫",
---     vertright = "┣",
---     verthoriz = "╋",
--- }
-
 -- Show single statusline for all windows
 vim.opt.laststatus = 3
 
@@ -55,6 +43,7 @@ vim.opt.wrap = false
 vim.opt.whichwrap:append("<>[]hl")
 
 -- Enable break indent
+-- Every wrapped line is visually indented to same level
 vim.opt.breakindent = true
 
 -- Save undo history

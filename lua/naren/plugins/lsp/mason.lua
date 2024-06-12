@@ -26,6 +26,9 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "pyright",
+                "tsserver",
+                "cssls",
+                "eslint",
             },
         })
 
@@ -36,6 +39,7 @@ return {
                 "mypy",
                 "pylint",
                 "stylua",
+                "prettier",
             },
         })
     end,

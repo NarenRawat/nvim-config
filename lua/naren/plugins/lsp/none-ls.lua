@@ -1,5 +1,8 @@
 return {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+        "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
         local null_ls = require("null-ls")
 
@@ -14,8 +17,10 @@ return {
                 formatting.stylua,
                 formatting.isort,
                 formatting.black,
+                formatting.prettier,
                 diagnostics.mypy,
                 diagnostics.pylint,
+                require("none-ls.diagnostics.eslint"),
             },
             on_attach = function(current_client, bufnr)
                 if

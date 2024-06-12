@@ -7,6 +7,9 @@ return {
         { "folke/neodev.nvim", opts = {} },
         "williamboman/mason-lspconfig.nvim",
     },
+    opts = {
+        inlay_hints = true,
+    },
     config = function()
         local lspconfig = require("lspconfig")
 
@@ -132,12 +135,62 @@ return {
                     },
                 })
             end,
+            ["eslint"] = function()
+                lspconfig["eslint"].setup({
+                    capabilities = capabilities,
+                    single_file_support = false,
+                    root_dir = function()
+                        return vim.loop.cwd()
+                    end,
+                })
+            end,
+            ["tsserver"] = function()
+                lspconfig["tsserver"].setup({
+                    capabilities = capabilities,
+                    single_file_support = false,
+                    root_dir = function()
+                        return vim.loop.cwd()
+                    end,
+                    settings = {
+                        typescript = {
+                            typescript = {
+                                inlayHints = {
+                                    includeInlayParameterNameHints = "literal",
+                                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                    includeInlayFunctionParameterTypeHints = true,
+                                    includeInlayVariableTypeHints = false,
+                                    includeInlayPropertyDeclarationTypeHints = true,
+                                    includeInlayFunctionLikeReturnTypeHints = true,
+                                    includeInlayEnumMemberValueHints = true,
+                                },
+                            },
+                            javascript = {
+                                inlayHints = {
+                                    includeInlayParameterNameHints = "all",
+                                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                    includeInlayFunctionParameterTypeHints = true,
+                                    includeInlayVariableTypeHints = true,
+                                    includeInlayPropertyDeclarationTypeHints = true,
+                                    includeInlayFunctionLikeReturnTypeHints = true,
+                                    includeInlayEnumMemberValueHints = true,
+                                },
+                            },
+                        },
+                    },
+                })
+            end,
             ["pyright"] = function()
                 lspconfig["pyright"].setup({
                     capabilities = capabilities,
                     root_dir = function()
                         return vim.loop.cwd()
                     end,
+                })
+            end,
+            ["clangd"] = function()
+                lspconfig["clangd"].setup({
+                    capabilities = capabilities,
+                    cmd = { "clangd", "--fallback-style=microsoft" },
                 })
             end,
         })
