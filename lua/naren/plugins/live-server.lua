@@ -8,7 +8,6 @@ return {
             args = {
                 "--host=0.0.0.0",
                 "--port=8080",
-                "--browser=/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
             },
         })
     end,
